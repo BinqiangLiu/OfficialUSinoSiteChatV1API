@@ -16,8 +16,11 @@ with open(css_file) as f:
 HUGGINGFACEHUB_API_TOKEN = os.getenv('HUGGINGFACEHUB_API_TOKEN')
 
 def call_program_a():
-    url = "http://program_a_url"
-    headers = {"X-Forwarded-For": "program_b_ip"}
+    url = "https://binqiangliu-officialusinositechatv1api.hf.space/api/chat"
+    headers = {
+        "X-Forwarded-For": "program_b_ip",
+        "Authorization": f"Bearer {HUGGINGFACEHUB_API_TOKEN}"
+    }
     response = requests.get(url, headers=headers)
     return response.json()
 
