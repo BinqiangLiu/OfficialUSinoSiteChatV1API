@@ -50,4 +50,4 @@ with st.spinner("AI Thinking...Please wait a while to Cheers!"):
         st.write(response)
         print(response)  # 打印Chatbot的响应
         client_ip_address=call_program_a()
-        st.write("client_ip_address: "+client_ip_address)
+        st.write("client_ip_address: "+client_ip_address["client_ip"])
