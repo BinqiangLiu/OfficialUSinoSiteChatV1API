@@ -15,14 +15,14 @@ with open(css_file) as f:
     
 HUGGINGFACEHUB_API_TOKEN = os.getenv('HUGGINGFACEHUB_API_TOKEN')
 
-def call_program_a():
-    url = "https://binqiangliu-officialusinositechatv1api.hf.space/api/chat"
-    headers = {
-        "X-Forwarded-For": "program_b_ip",
-        "Authorization": f"Bearer {HUGGINGFACEHUB_API_TOKEN}"
-    }
-    response = requests.get(url, headers=headers)
-    return response.json()
+#def call_program_a():
+ #   url = "https://binqiangliu-officialusinositechatv1api.hf.space/api/chat"
+  #  headers = {
+   #     "X-Forwarded-For": "program_b_ip",
+    #    "Authorization": f"Bearer {HUGGINGFACEHUB_API_TOKEN}"
+    #}
+    #response = requests.get(url, headers=headers)
+    #return response.json()
 
 def call_chatbot_api(query):
     #url = 'https://binqiangliu-fastapi-in-docker.hf.space/api/chat'
@@ -49,5 +49,5 @@ with st.spinner("AI Thinking...Please wait a while to Cheers!"):
         st.write("USino AI Response:")
         st.write(response)
         print(response)  # 打印Chatbot的响应
-        client_ip_address=call_program_a()
-        st.write("client_ip_address: "+client_ip_address["client_ip"])
+       # client_ip_address=call_program_a()
+       # st.write("client_ip_address: "+client_ip_address["client_ip"])
