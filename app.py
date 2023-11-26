@@ -1,5 +1,8 @@
 import requests
 import streamlit as st
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 st.set_page_config(page_title="USinoIP Website AI Chat Assistant - Open Source Version", layout="wide")
 st.subheader("Welcome to USinoIP Website AI Chat Assistant - Open Source Version.")
@@ -8,12 +11,19 @@ st.write("Important notice: This USinoIP Website AI Chat Assistant is offered ON
 css_file = "main.css"
 with open(css_file) as f:
     st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
+    
+HUGGINGFACEHUB_API_TOKEN = os.getenv('HUGGINGFACEHUB_API_TOKEN')
 
 def call_chatbot_api(query):
     #url = 'https://binqiangliu-fastapi-in-docker.hf.space/api/chat'
     url = 'https://binqiangliu-officialusinositechatv1api.hf.space/api/chat'
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {HUGGINGFACEHUB_API_TOKEN}"
+    }    
     json_data_for_api = {'user_question': query}
-    response = requests.post(url, json=json_data_for_api) 
+    #response = requests.post(url, json=json_data_for_api) 
+    response = requests.post(url, headers=headers, data=json.dumps(data))    
     result = response.json()
     return result['response']
     
