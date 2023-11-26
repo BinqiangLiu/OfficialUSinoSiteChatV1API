@@ -24,10 +24,10 @@ def call_chatbot_api(query):
     json_data_for_api = {'user_question': query}
     
     #response = requests.post(url, json=json_data_for_api) 
-    #response = requests.post(url, headers=headers, json=json_data_for_api)   
+    response = requests.post(url, headers=headers, json=json_data_for_api)   
     
     #response = requests.post(url, headers=headers, data=json.dumps(data))    #NameError: name 'json' is not defined
-    response = requests.post(url, headers=headers, data=json.dumps(json_data_for_api))   
+    #response = requests.post(url, headers=headers, data=json.dumps(json_data_for_api))   #NameError: name 'json' is not defined
     
     result = response.json()
     return result['response']
