@@ -15,15 +15,6 @@ with open(css_file) as f:
     
 HUGGINGFACEHUB_API_TOKEN = os.getenv('HUGGINGFACEHUB_API_TOKEN')
 
-#def call_program_a():
- #   url = "https://binqiangliu-officialusinositechatv1api.hf.space/api/chat"
-  #  headers = {
-   #     "X-Forwarded-For": "program_b_ip",
-    #    "Authorization": f"Bearer {HUGGINGFACEHUB_API_TOKEN}"
-    #}
-    #response = requests.get(url, headers=headers)
-    #return response.json()
-
 def call_chatbot_api(query):
     #url = 'https://binqiangliu-fastapi-in-docker.hf.space/api/chat'
     url = 'https://binqiangliu-officialusinositechatv1api.hf.space/api/chat'
@@ -34,8 +25,7 @@ def call_chatbot_api(query):
     json_data_for_api = {'user_question': query}
     
     #response = requests.post(url, json=json_data_for_api) 
-    #response = requests.post(url, headers=headers, json=json_data_for_api)   #This format is working
-    
+    #response = requests.post(url, headers=headers, json=json_data_for_api)   #This format is working    
     #response = requests.post(url, headers=headers, data=json.dumps(data))    #NameError: name 'json' is not defined
     response = requests.post(url, headers=headers, data=json.dumps(json_data_for_api))   #This format needs 'import json', or else NameError: name 'json' is not defined
     
@@ -43,11 +33,10 @@ def call_chatbot_api(query):
     return result['response']
     
 user_query = st.text_input("Enter your query here:")
-with st.spinner("AI Thinking...Please wait a while to Cheers!"):    
-    if user_query !="" and not user_query.strip().isspace() and not user_query == "" and not user_query.strip() == "" and not user_query.isspace():
-        response = call_chatbot_api(user_query)
-        st.write("USino AI Response:")
-        st.write(response)
-        print(response)  # 打印Chatbot的响应
-       # client_ip_address=call_program_a()
-       # st.write("client_ip_address: "+client_ip_address["client_ip"])
+if st.button('Get AI Response'):
+    with st.spinner("AI Thinking...Please wait a while to Cheers!"):    
+        if user_query !="" and not user_query.strip().isspace() and not user_query == "" and not user_query.strip() == "" and not user_query.isspace():
+            response = call_chatbot_api(user_query)
+            st.write("USino AI Response:")
+            st.write(response)
+            print(response)  # 打印Chatbot的响应
